@@ -37,7 +37,6 @@ var addFile = function( filename )
     
     var blob = new Blob([data]);
     var errorHandler;
-    transfer.addRecipient(username, undefined);
     transfer.addFile(displayPath, blob, errorHandler);
 }
 
