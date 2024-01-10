@@ -97,18 +97,29 @@ async function setupFiles( filelist ) {
 
 async function upload() {
 
+    if( argv.proxy ) {
+        const proxy = require('node-global-proxy').default;
+        proxy.setConfig(argv.proxy);
+        proxy.start();
+    }
+
     await expandFileList( filelist.pop(), filelist );
     
     setupFiles(expandedlist);
 
     let expiry = (new Date(Date.now() + expireInDays * 24 * 60 * 60 * 1000));
     transfer.expires = Math.floor(expiry.getTime()/1000);    
-    transfer.options.get_a_link = true;
 
-    transfer.oncomplete = function(transfer, time) {
-        console.log("Your download link: '" + global.transfer.download_link + "'" );
+    if( argv.recipient ) {
+        transfer.options.get_a_link = false;
+        transfer.addRecipient(argv.recipient, undefined);
+    } else{
+        transfer.options.get_a_link = true;
+
+        transfer.oncomplete = function(transfer, time) {
+            console.log("Your download link: '" + global.transfer.download_link + "'" );
+        }
     }
-
     transfer.start();
     
 }
