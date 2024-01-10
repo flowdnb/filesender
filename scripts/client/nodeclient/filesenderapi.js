@@ -81,9 +81,8 @@ crypto.getRandomValues(new Uint8Array(32));
 
 //create a new transfer
 var transfer = new global.window.filesender.transfer()
-global.window.filesender.client.from = username;
 global.window.filesender.client.remote_user = username;
-transfer.from = username;
+transfer.from = 'noreply-itcf@dkfz-heidelberg.de';
 global.transfer = transfer;
 global.username = username;
 

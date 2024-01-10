@@ -115,7 +115,7 @@ window.filesender.client = {
             //... if there is an API key then REST CLI
             var timestamp = Math.floor(Date.now() / 1000);
 
-            urlargs.push('remote_user' + '=' + this.from);
+            urlargs.push('remote_application' + '=' + this.remote_user);
             urlargs.push('timestamp' + '=' + timestamp);
 
             var local_resource = resource.split(/\?|\&/);
