@@ -7,6 +7,13 @@ const ini = require('ini');
 const path = require('node:path');
 
 var argv = require('minimist')(process.argv.slice(2));
+
+if( argv.proxy ) {
+    const proxy = require('node-global-proxy').default;
+    proxy.setConfig(argv.proxy);
+    proxy.start();
+}
+
 var expireInDays = 7;
 if( argv.expire && argv.expire >= 1 ) {
     if( argv.expire > config.max_transfer_days_valid ) {

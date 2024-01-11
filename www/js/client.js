@@ -158,7 +158,7 @@ window.filesender.client = {
             }
 
             if(!(resource.startsWith("/file/") && method.toLowerCase() == 'put')) {
-                console.log("signed: " + to_sign);
+                console.log("signed = " + '"' + to_sign + '"');
                 const crypto = require('crypto');
                 let signature = crypto.createHmac("sha1", this.api_key).update(to_sign).digest().toString('hex');
                 urlargs.push('signature' + '=' + signature);
