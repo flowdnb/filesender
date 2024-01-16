@@ -194,10 +194,10 @@ window.filesender.client = {
         
         if(this.security_token /*&& (method != 'get')**/) headers['X-Filesender-Security-Token'] = this.security_token;
 
-	if (method.toLowerCase() === 'delete' || method.toLowerCase() === 'put') {
-	    // attach the token in request header
-   	    headers['csrfptoken'] = filesender.client.getCSRFToken();
-	}
+        if (method.toLowerCase() === 'delete' || method.toLowerCase() === 'put') {
+            // attach the token in request header
+            headers['csrfptoken'] = filesender.client.getCSRFToken();
+        }
         
         var settings = {
             cache: false,
@@ -352,7 +352,7 @@ window.filesender.client = {
     get: function(resource, callback, options) {
         // nodejs command line client only
         if (this.api_key) {
-            options.force_amp_at_end = true;
+            options.force_amp_at_end = false;
         }
         return this.call('get', resource, undefined, callback, options);
     },
